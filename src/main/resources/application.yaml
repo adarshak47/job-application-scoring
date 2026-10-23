@@ -32,3 +32,12 @@ info:
   app:
     name: Job Application Scoring System
     description: Resume and job description matching API
+
+app:
+  ai:
+    gemini:
+      api-key: ${GEMINI_API_KEY}
+      base-url: https://generativelanguage.googleapis.com
+      model: ${GEMINI_MODEL:gemini-3.5-flash-lite}
+      connect-timeout: 5s
+      read-timeout: 60s
