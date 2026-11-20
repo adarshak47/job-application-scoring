@@ -10,6 +10,19 @@ spring:
       max-file-size: 5MB
       max-request-size: 6MB
 
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/jobot}
+    username: ${DB_USERNAME:username}
+    password: ${DB_PASSWORD:password}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+
 
 server:
   port: ${SERVER_PORT:8080}
@@ -46,3 +59,22 @@ app:
       model: ${GEMINI_MODEL:gemini-3.5-flash-lite}
       connect-timeout: 5s
       read-timeout: 60s
+
+jobot:
+  storage:
+    resume-directory: ${RESUME_STORAGE_DIR:./data/resumes}
+
+# Playwright browser
+  browser:
+    headless: ${JOBOT_BROWSER_HEADLESS:false}
+    slow-mo: ${JOBOT_BROWSER_SLOW_MO:0}
+    timeout-ms: ${JOBOT_BROWSER_TIMEOUT_MS:30000}
+    navigation-timeout-ms: ${JOBOT_BROWSER_NAVIGATION_TIMEOUT_MS:60000}
+    viewport-width: 1440
+    viewport-height: 900
+
+# Workday login credentials
+  workday:
+    login:
+      email: ${JOBOT_WORKDAY_EMAIL:}
+      password: ${JOBOT_WORKDAY_PASSWORD:}
